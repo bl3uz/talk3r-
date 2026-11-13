@@ -22,11 +22,11 @@
     <div class="w-8 h-[2px] bg-[#35363c] rounded"></div>
     <div id="server-rail" class="flex flex-col space-y-2 items-center w-full overflow-y-auto max-h-[calc(100vh-220px)]"></div>
     <!-- Tombol Buat Server -->
-    <button onclick="document.getElementById('modal-server').style.display='flex'" title="Buat Grup" class="w-12 h-12 bg-[#313338] text-green-500 hover:bg-green-500 hover:text-white rounded-3xl hover:rounded-2xl flex items-center justify-center active:scale-90 transition cursor-pointer">
+    <button onclick="openModal('modal-server')" title="Buat Grup" class="w-12 h-12 bg-[#313338] text-green-500 hover:bg-green-500 hover:text-white rounded-3xl hover:rounded-2xl flex items-center justify-center active:scale-90 transition cursor-pointer">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
     </button>
     <!-- Tombol Join Kode -->
-    <button onclick="document.getElementById('modal-join').style.display='flex'" title="Gabung Kode" class="w-12 h-12 bg-[#313338] text-indigo-400 hover:bg-indigo-500 hover:text-white rounded-3xl hover:rounded-2xl flex items-center justify-center active:scale-90 transition cursor-pointer">
+    <button onclick="openModal('modal-join')" title="Gabung Kode" class="w-12 h-12 bg-[#313338] text-indigo-400 hover:bg-indigo-500 hover:text-white rounded-3xl hover:rounded-2xl flex items-center justify-center active:scale-90 transition cursor-pointer">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
     </button>
   </div>
@@ -35,43 +35,47 @@
   <div id="sidebar" class="w-60 bg-[#2b2d31] flex flex-col border-r border-[#1f2023] shrink-0 hidden">
     <div class="h-12 border-b border-[#1f2023] flex items-center justify-between px-4 font-bold text-white shadow-sm">
       <span id="server-title" class="truncate text-sm">talk3r</span>
-      <button onclick="showInvite()" class="text-gray-400 hover:text-white p-1 rounded hover:bg-[#35373c] active:scale-90 cursor-pointer">
+      <button onclick="showInvite()" title="Kode Undangan" class="text-gray-400 hover:text-white p-1 rounded hover:bg-[#35373c] active:scale-90 cursor-pointer">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
       </button>
     </div>
     <div class="flex-1 p-2 space-y-1 overflow-y-auto">
       <div class="flex items-center justify-between px-2 pt-2 pb-1">
         <span class="text-[11px] font-bold text-gray-400">CHANNELS</span>
-        <button onclick="document.getElementById('modal-channel').style.display='flex'" class="text-gray-400 hover:text-white cursor-pointer"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+        <button onclick="openModal('modal-channel')" title="Tambah Channel" class="text-gray-400 hover:text-white cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </button>
       </div>
       <div id="channel-list" class="space-y-0.5"></div>
     </div>
     <!-- Footer User -->
     <div class="h-14 bg-[#232428] flex items-center px-3 justify-between">
-      <div onclick="document.getElementById('modal-profile').style.display='flex'" class="flex items-center space-x-2 cursor-pointer flex-1 truncate">
-        <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold" id="user-avatar">U</div>
+      <div onclick="openModal('modal-profile')" class="flex items-center space-x-2 cursor-pointer flex-1 truncate">
+        <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-bold shrink-0" id="user-avatar">U</div>
         <span class="text-xs font-semibold text-white truncate" id="user-name">User</span>
       </div>
-      <button onclick="leaveServer()" class="text-xs text-red-400 hover:text-red-300 cursor-pointer">Keluar</button>
+      <button onclick="leaveServer()" class="text-xs text-red-400 hover:text-red-300 cursor-pointer ml-2">Keluar</button>
     </div>
   </div>
 
   <!-- 3. DISCOVERY HUB -->
   <div id="view-hub" class="flex-1 bg-[#313338] flex flex-col overflow-y-auto">
-    <div class="h-56 bg-gradient-to-r from-indigo-800 to-purple-800 p-8 flex flex-col justify-center items-center text-center">
+    <div class="h-56 bg-gradient-to-r from-indigo-800 to-purple-800 p-8 flex flex-col justify-center items-center text-center shrink-0">
       <h1 class="text-3xl font-extrabold text-white">Temukan Komunitas di talk3r</h1>
       <p class="text-indigo-200 text-xs mt-1">Ngobrol seru, kirim stiker, dan kumpul bareng teman!</p>
-      <div class="mt-4">
-        <!-- Tombol Utama di Banner -->
-        <button onclick="document.getElementById('modal-server').style.display='flex'" class="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-white text-xs font-bold rounded-lg shadow-lg cursor-pointer transition">
+      <div class="mt-4 flex gap-2">
+        <button onclick="openModal('modal-server')" class="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-white text-xs font-bold rounded-lg shadow-lg cursor-pointer transition">
           ➕ Buat Grup Baru
+        </button>
+        <button onclick="openModal('modal-join')" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 active:scale-95 text-white text-xs font-bold rounded-lg shadow-lg cursor-pointer transition">
+          🔑 Gabung Pakai Kode
         </button>
       </div>
     </div>
     <div class="p-6 max-w-5xl mx-auto w-full">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-white font-bold text-sm">Grup Publik yang Tersedia</h2>
-        <button onclick="document.getElementById('modal-server').style.display='flex'" class="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-white text-xs font-semibold rounded-md shadow cursor-pointer">
+        <button onclick="openModal('modal-server')" class="px-3 py-1.5 bg-indigo-500 hover:bg-indigo-600 active:scale-95 text-white text-xs font-semibold rounded-md shadow cursor-pointer">
           + Buat Grup Baru
         </button>
       </div>
@@ -80,357 +84,63 @@
   </div>
 
   <!-- 4. CHAT VIEWPORT -->
-  <div id="view-chat" class="flex-1 flex flex-col bg-[#313338] min-w-0 hidden">
-    <header class="h-12 bg-[#313338] border-b border-[#232428] flex items-center px-4 text-white font-semibold shadow-sm">
-      <span class="text-gray-400 mr-2">#</span>
-      <span id="channel-title">general</span>
+  <div id="view-chat" class="flex-1 flex flex-col bg-[#313338] min-w-0 hidden relative">
+    <header class="h-12 bg-[#313338] border-b border-[#232428] flex items-center justify-between px-4 text-white font-semibold shadow-sm shrink-0">
+      <div class="flex items-center">
+        <span class="text-gray-400 mr-2">#</span>
+        <span id="channel-title">general</span>
+      </div>
+      <span id="connection-badge" class="text-[11px] px-2 py-0.5 rounded bg-yellow-500/20 text-yellow-300">Mode Lokal</span>
     </header>
-    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
-    
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 select-text"></div>
+
     <!-- Stiker Drawer -->
-    <div id="drawer-stickers" class="hidden absolute bottom-16 right-4 w-72 bg-[#2b2d31] rounded-xl shadow-2xl border border-[#1f2023] p-2 z-50">
+    <div id="drawer-stickers" class="hidden absolute bottom-20 right-4 w-72 bg-[#2b2d31] rounded-xl shadow-2xl border border-[#1f2023] p-3 z-50">
       <div class="flex justify-between items-center mb-2 px-1">
         <span class="text-xs font-bold text-gray-300">Pilih Stiker</span>
         <button onclick="toggleStickers()" class="text-gray-400 hover:text-white cursor-pointer">✕</button>
       </div>
-      <div id="sticker-list" class="grid grid-cols-3 gap-2 max-h-56 overflow-y-auto"></div>
+      <div id="sticker-list" class="grid grid-cols-4 gap-2 max-h-56 overflow-y-auto"></div>
     </div>
 
     <!-- Input Form -->
-    <form onsubmit="handleSend(event)" class="p-4 bg-[#383a40]">
+    <form onsubmit="handleSend(event)" class="p-4 bg-[#383a40] shrink-0">
       <div class="flex items-center bg-[#40444b] rounded-lg px-4 py-2 space-x-2">
         <input id="input-chat" type="text" placeholder="Tulis pesan..." class="flex-1 bg-transparent border-none outline-none text-sm text-white placeholder-gray-400" autocomplete="off">
         <button type="button" onclick="toggleStickers()" class="text-gray-400 hover:text-white active:scale-90 text-lg cursor-pointer">😊</button>
-        <button type="submit" class="text-gray-400 hover:text-white active:scale-90 font-bold text-sm cursor-pointer">➤</button>
+        <button type="submit" class="text-indigo-400 hover:text-indigo-300 active:scale-90 font-bold text-sm cursor-pointer">➤</button>
       </div>
     </form>
   </div>
 
-  <!-- ================= MODALS (Inline Display) ================= -->
-  <!-- Modal Server -->
+  <!-- ================= MODALS ================= -->
+  <!-- Modal Buat Server -->
   <div id="modal-server" style="display: none;" class="fixed inset-0 bg-black/60 items-center justify-center z-50 p-4">
     <form onsubmit="createGroup(event)" class="bg-[#313338] text-white p-6 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl">
       <h2 class="text-lg font-bold">Buat Grup Baru</h2>
       <input id="new-server-name" type="text" required placeholder="Nama Grup..." class="w-full bg-[#1e1f22] p-2.5 rounded text-sm text-white outline-none">
-      <label class="flex items-center space-x-2 text-xs cursor-pointer"><input id="new-server-priv" type="checkbox" class="w-4 h-4 accent-indigo-500"><span>Grup Privat (Pakai Kode Undangan)?</span></label>
+      <label class="flex items-center space-x-2 text-xs cursor-pointer">
+        <input id="new-server-priv" type="checkbox" class="w-4 h-4 accent-indigo-500">
+        <span>Grup Privat (Pakai Kode Undangan)?</span>
+      </label>
       <div class="flex justify-end space-x-2 pt-2">
-        <button type="button" onclick="document.getElementById('modal-server').style.display='none'" class="px-4 py-2 text-xs text-gray-300 cursor-pointer">Batal</button>
-        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded text-xs font-semibold cursor-pointer">Buat</button>
+        <button type="button" onclick="closeModal('modal-server')" class="px-4 py-2 text-xs text-gray-300 hover:text-white cursor-pointer">Batal</button>
+        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-xs font-bold cursor-pointer">Buat</button>
       </div>
     </form>
   </div>
 
-  <!-- Modal Join Kode -->
+  <!-- Modal Gabung Kode -->
   <div id="modal-join" style="display: none;" class="fixed inset-0 bg-black/60 items-center justify-center z-50 p-4">
     <form onsubmit="joinByCode(event)" class="bg-[#313338] text-white p-6 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl">
-      <h2 class="text-lg font-bold">Gabung dengan Kode</h2>
-      <input id="join-code" type="text" required placeholder="Contoh: TK3-ABCD" class="w-full bg-[#1e1f22] p-2.5 rounded text-sm text-white uppercase font-mono outline-none">
+      <h2 class="text-lg font-bold">Gabung Grup dengan Kode</h2>
+      <input id="join-code-input" type="text" required placeholder="Masukkan kode undangan (cth: TALK3R)..." class="w-full bg-[#1e1f22] p-2.5 rounded text-sm text-white uppercase outline-none">
       <div class="flex justify-end space-x-2 pt-2">
-        <button type="button" onclick="document.getElementById('modal-join').style.display='none'" class="px-4 py-2 text-xs text-gray-300 cursor-pointer">Batal</button>
-        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded text-xs font-semibold cursor-pointer">Gabung</button>
+        <button type="button" onclick="closeModal('modal-join')" class="px-4 py-2 text-xs text-gray-300 hover:text-white cursor-pointer">Batal</button>
+        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded-lg text-xs font-bold cursor-pointer">Gabung</button>
       </div>
     </form>
   </div>
 
-  <!-- Modal Channel -->
+  <!-- Modal Tambah Channel -->
   <div id="modal-channel" style="display: none;" class="fixed inset-0 bg-black/60 items-center justify-center z-50 p-4">
-    <form onsubmit="createChannel(event)" class="bg-[#313338] text-white p-6 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl">
-      <h2 class="text-lg font-bold">Buat Channel</h2>
-      <input id="new-channel-name" type="text" required placeholder="Nama channel..." class="w-full bg-[#1e1f22] p-2.5 rounded text-sm text-white outline-none">
-      <div class="flex justify-end space-x-2 pt-2">
-        <button type="button" onclick="document.getElementById('modal-channel').style.display='none'" class="px-4 py-2 text-xs text-gray-300 cursor-pointer">Batal</button>
-        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded text-xs font-semibold cursor-pointer">Buat</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Modal Profile -->
-  <div id="modal-profile" style="display: none;" class="fixed inset-0 bg-black/60 items-center justify-center z-50 p-4">
-    <form onsubmit="saveProfile(event)" class="bg-[#313338] text-white p-6 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl">
-      <h2 class="text-lg font-bold">Ubah Nama Kamu</h2>
-      <input id="edit-user-name" type="text" required class="w-full bg-[#1e1f22] p-2.5 rounded text-sm text-white outline-none">
-      <div class="flex justify-end space-x-2 pt-2">
-        <button type="button" onclick="document.getElementById('modal-profile').style.display='none'" class="px-4 py-2 text-xs text-gray-300 cursor-pointer">Batal</button>
-        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded text-xs font-semibold cursor-pointer">Simpan</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- ================= JAVASCRIPT ================= -->
-  <script>
-    const SUPABASE_URL = 'https://uqzqnipfljjnytbkrhsj.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_m9hkl0Vq_IHoo9v-tTbvPQ_PKwUdSw_';
-    
-    let db = null;
-    try {
-      if (window.supabase && window.supabase.createClient) {
-        db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    const STICKERS = [
-      { name: 'Pop Cat', url: 'https://media.tenor.com/2lF53G8oP4MAAAAC/pop-cat-cat.gif' },
-      { name: 'Cat Jam', url: 'https://media.tenor.com/y_x1W4hLdSAAAAAC/cat-vibing.gif' },
-      { name: 'Party Parrot', url: 'https://cultofthepartyparrot.com/parrots/hd/parrot.gif' },
-      { name: 'Doge Dance', url: 'https://media.tenor.com/PZc3z_h0qYcAAAAC/doge-dance.gif' },
-      { name: 'Pepe Pog', url: 'https://media.tenor.com/y29K29qK-sAAAAAC/pepe-pog.gif' },
-      { name: 'Heart Cat', url: 'https://media.tenor.com/uGz32wE_bQAAAAAC/cat-heart.gif' }
-    ];
-
-    let userId = localStorage.getItem('talk3r_uid') || 'user_' + Math.random().toString(36).substring(2, 7);
-    localStorage.setItem('talk3r_uid', userId);
-    let userName = localStorage.getItem('talk3r_name') || 'User_' + userId.slice(-4);
-
-    let allServers = [];
-    let myServers = JSON.parse(localStorage.getItem('talk3r_joined') || '[]');
-    let currentServer = null;
-    let currentChannel = null;
-    let messages = [];
-    let activeSub = null;
-
-    function init() {
-      document.getElementById('user-name').innerText = userName;
-      document.getElementById('user-avatar').innerText = userName.charAt(0).toUpperCase();
-      document.getElementById('edit-user-name').value = userName;
-      renderStickerList();
-      loadServers();
-      showHub();
-    }
-
-    function showHub() {
-      document.getElementById('view-hub').classList.remove('hidden');
-      document.getElementById('view-chat').classList.add('hidden');
-      document.getElementById('sidebar').classList.add('hidden');
-      renderHub();
-    }
-
-    async function loadServers() {
-      if (!db) return;
-      try {
-        const { data } = await db.from('servers').select('*').order('created_at', { ascending: false });
-        allServers = data || [];
-        renderRail();
-        renderHub();
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    function renderRail() {
-      const rail = document.getElementById('server-rail');
-      rail.innerHTML = '';
-      const joined = allServers.filter(s => myServers.includes(s.id));
-      joined.forEach(s => {
-        const btn = document.createElement('button');
-        btn.className = 'w-12 h-12 bg-[#313338] hover:bg-indigo-500 text-white rounded-3xl hover:rounded-2xl flex items-center justify-center font-bold text-sm active:scale-90 transition cursor-pointer';
-        btn.innerText = s.name.slice(0, 2).toUpperCase();
-        btn.title = s.name;
-        btn.onclick = () => openServer(s);
-        rail.appendChild(btn);
-      });
-    }
-
-    function renderHub() {
-      const container = document.getElementById('hub-cards');
-      container.innerHTML = '';
-      const publics = allServers.filter(s => !s.is_private);
-
-      if (publics.length === 0) {
-        container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-10 text-xs">Belum ada grup publik. Klik "Buat Grup Baru" di atas!</div>';
-        return;
-      }
-
-      publics.forEach(s => {
-        const isJoined = myServers.includes(s.id);
-        const card = document.createElement('div');
-        card.className = 'bg-[#2b2d31] p-4 rounded-xl border border-[#1f2023] flex justify-between items-center shadow';
-        card.innerHTML = `
-          <div>
-            <h3 class="font-bold text-white text-sm">${s.name}</h3>
-            <span class="text-[10px] text-green-400 font-semibold">Publik</span>
-          </div>
-          <button onclick="joinServer('${s.id}')" class="px-3.5 py-1.5 ${isJoined ? 'bg-gray-600 hover:bg-gray-500' : 'bg-indigo-500 hover:bg-indigo-600'} text-white text-xs font-semibold rounded-md active:scale-95 transition cursor-pointer">
-            ${isJoined ? 'Buka' : 'Gabung'}
-          </button>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function joinServer(id) {
-      if (!myServers.includes(id)) {
-        myServers.push(id);
-        localStorage.setItem('talk3r_joined', JSON.stringify(myServers));
-      }
-      const s = allServers.find(srv => srv.id === id);
-      if (s) openServer(s);
-    }
-
-    async function openServer(server) {
-      currentServer = server;
-      document.getElementById('server-title').innerText = server.name;
-      document.getElementById('view-hub').classList.add('hidden');
-      document.getElementById('sidebar').classList.remove('hidden');
-      document.getElementById('view-chat').classList.remove('hidden');
-
-      if (!db) return;
-      const { data } = await db.from('channels').select('*').eq('server_id', server.id).order('created_at', { ascending: true });
-      const chList = document.getElementById('channel-list');
-      chList.innerHTML = '';
-
-      if (data && data.length > 0) {
-        data.forEach(c => {
-          const div = document.createElement('div');
-          div.className = 'flex items-center px-2 py-1.5 rounded text-sm text-gray-400 hover:bg-[#35373c] hover:text-white cursor-pointer';
-          div.innerHTML = `<span class="mr-2 text-gray-500">#</span><span>${c.name}</span>`;
-          div.onclick = () => openChannel(c);
-          chList.appendChild(div);
-        });
-        openChannel(data[0]);
-      }
-    }
-
-    async function openChannel(channel) {
-      currentChannel = channel;
-      document.getElementById('channel-title').innerText = channel.name;
-
-      if (!db) return;
-      const { data } = await db.from('messages').select('*').eq('channel_id', channel.id).order('created_at', { ascending: true });
-      messages = data || [];
-      renderChat();
-
-      if (activeSub) db.removeChannel(activeSub);
-      activeSub = db.channel(`ch:${channel.id}`)
-        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `channel_id=eq.${channel.id}` }, p => {
-          messages.push(p.new);
-          renderChat();
-        }).subscribe();
-    }
-
-    function renderChat() {
-      const box = document.getElementById('chat-messages');
-      box.innerHTML = '';
-      if (messages.length === 0) {
-        box.innerHTML = '<div class="text-xs text-gray-500">Belum ada pesan. Mulai obrolan!</div>';
-        return;
-      }
-      messages.forEach(m => {
-        const isMe = m.user_id === userId;
-        const isImg = m.content.match(/\.(gif|jpg|png|webp)/i) || m.content.includes('tenor.com');
-        const div = document.createElement('div');
-        div.className = 'flex flex-col hover:bg-[#2b2d31] p-1.5 rounded text-sm';
-        div.innerHTML = `
-          <div class="flex items-center space-x-2 text-xs">
-            <span class="font-bold ${isMe ? 'text-indigo-400' : 'text-green-400'}">${isMe ? userName : 'Teman'}</span>
-            <span class="text-[10px] text-gray-500">${new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-          </div>
-          ${isImg ? `<img src="${m.content}" class="max-w-[200px] rounded-lg mt-1" loading="lazy">` : `<p class="text-gray-200 mt-0.5">${m.content}</p>`}
-        `;
-        box.appendChild(div);
-      });
-      box.scrollTop = box.scrollHeight;
-    }
-
-    async function handleSend(e) {
-      e.preventDefault();
-      const input = document.getElementById('input-chat');
-      const text = input.value.trim();
-      if (!text || !currentChannel || !db) return;
-      input.value = '';
-      await db.from('messages').insert({ channel_id: currentChannel.id, user_id: userId, content: text });
-    }
-
-    async function sendSticker(url) {
-      toggleStickers();
-      if (!currentChannel || !db) return;
-      await db.from('messages').insert({ channel_id: currentChannel.id, user_id: userId, content: url });
-    }
-
-    function renderStickerList() {
-      const list = document.getElementById('sticker-list');
-      list.innerHTML = '';
-      STICKERS.forEach(s => {
-        const btn = document.createElement('button');
-        btn.className = 'p-1 hover:bg-[#383a40] rounded flex flex-col items-center cursor-pointer';
-        btn.innerHTML = `<img src="${s.url}" class="w-12 h-12 object-contain"><span class="text-[8px] text-gray-400 mt-1">${s.name}</span>`;
-        btn.onclick = () => sendSticker(s.url);
-        list.appendChild(btn);
-      });
-    }
-
-    function toggleStickers() {
-      document.getElementById('drawer-stickers').classList.toggle('hidden');
-    }
-
-    async function createGroup(e) {
-      e.preventDefault();
-      if (!db) return;
-      const name = document.getElementById('new-server-name').value.trim();
-      const isPriv = document.getElementById('new-server-priv').checked;
-      const code = 'TK3-' + Math.random().toString(36).substring(2, 6).toUpperCase();
-
-      const { data } = await db.from('servers').insert({ name, is_private: isPriv, invite_code: code }).select().single();
-      if (data) {
-        await db.from('channels').insert({ server_id: data.id, name: 'general' });
-        document.getElementById('modal-server').style.display = 'none';
-        document.getElementById('new-server-name').value = '';
-        await loadServers();
-        joinServer(data.id);
-      }
-    }
-
-    async function createChannel(e) {
-      e.preventDefault();
-      if (!db || !currentServer) return;
-      const name = document.getElementById('new-channel-name').value.toLowerCase().trim().replace(/\s+/g, '-');
-      if (!name) return;
-      await db.from('channels').insert({ server_id: currentServer.id, name });
-      document.getElementById('modal-channel').style.display = 'none';
-      document.getElementById('new-channel-name').value = '';
-      openServer(currentServer);
-    }
-
-    async function joinByCode(e) {
-      e.preventDefault();
-      if (!db) return;
-      const code = document.getElementById('join-code').value.trim();
-      const { data } = await db.from('servers').select('*').ilike('invite_code', code).single();
-      if (data) {
-        document.getElementById('modal-join').style.display = 'none';
-        document.getElementById('join-code').value = '';
-        joinServer(data.id);
-      } else {
-        alert('Kode tidak valid!');
-      }
-    }
-
-    function showInvite() {
-      if (!currentServer) return;
-      const code = currentServer.invite_code || 'TK3-FREE';
-      navigator.clipboard.writeText(code);
-      alert(`Kode undangan: ${code}\n(Sudah disalin ke clipboard!)`);
-    }
-
-    function leaveServer() {
-      if (!currentServer) return;
-      myServers = myServers.filter(id => id !== currentServer.id);
-      localStorage.setItem('talk3r_joined', JSON.stringify(myServers));
-      renderRail();
-      showHub();
-    }
-
-    function saveProfile(e) {
-      e.preventDefault();
-      userName = document.getElementById('edit-user-name').value.trim() || 'User';
-      localStorage.setItem('talk3r_name', userName);
-      document.getElementById('user-name').innerText = userName;
-      document.getElementById('user-avatar').innerText = userName.charAt(0).toUpperCase();
-      document.getElementById('modal-profile').style.display = 'none';
-    }
-
-    window.onload = init;
-  </script>
-</body>
-</html>
